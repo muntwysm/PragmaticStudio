@@ -1,10 +1,16 @@
-project1 = "ABC"
-project1Funding = 1000
-project2 = "LMN"
-project3 = "XYZ"
+class Project
+
+	def initialize projectName, projectTargetFunding
+		@projectName = projectName
+		@projectTargetFunding = projectTargetFunding
+	end
+
+	def to_s
+		"#{@projectName} project has a Target of $#{@projectTargetFunding}. "
+	end
+
+end
 
 
-puts "#{project1} has $#{project1Funding} in funding."
-
-
-puts "Projects: \n\t#{project1} \n\t#{project2}\n\t#{project2}"
+x = Project.new('ABC', 3000)
+puts x

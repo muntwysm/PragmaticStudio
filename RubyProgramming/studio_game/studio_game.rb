@@ -1,10 +1,40 @@
-player1 = "Larry"
-player1Health = 60
-player2 = "Curly"
-player2Health = 60
-player3 = "Moe" 
-player3Health = 60
+class Player
+	def initialize playerName , playerhealth =100
+		@playerName = playerName
+		@playerhealth = playerhealth
+	end
 
-puts "#{player1}'s health is #{player1Health / 9.0}"
+	def to_s
+		"I'm #{@playerName.capitalize} with a health of #{@playerhealth}."
+	end
 
-puts "Players: \n\t #{player1} \n\t #{player2} \n\t #{player3}"
+	def blammed
+		@playerhealth -= 10
+		puts "#{@playerName} got blammed"
+	end
+
+	def w00ted
+		@playerhealth += 10
+		puts "#{@playerName} got w00ted"
+	end
+end
+
+def time 
+	time = Time.now
+	time
+end
+
+puts "The game started on #{time} ."
+
+playerLarry = Player.new('Larry',100)
+
+puts playerLarry
+
+playerLarry.blammed
+
+puts playerLarry
+
+playerLarry.w00ted
+
+puts playerLarry
+

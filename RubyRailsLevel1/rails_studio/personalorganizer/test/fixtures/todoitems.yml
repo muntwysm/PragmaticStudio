@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  dateToDo: 2015-02-27
+  purpose: MyString
+
+two:
+  name: MyString
+  dateToDo: 2015-02-27
+  purpose: MyString

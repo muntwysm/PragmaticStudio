@@ -10,6 +10,10 @@ class Movie
 		@title = title
 	end
 
+	def normalizedRank
+		@rank/10
+	end
+
 	def to_s
  		"#{@title} has rank #{@rank}"
 	end
@@ -21,10 +25,13 @@ class Movie
 	def ThumbsDown
 		@rank -= 1
 	end
+
+	attr_reader :rank
+	attr_accessor :title
 end
 
 def movie_listing (title, rank = 0)
-	" #{weekday.upcase}: #{title.capitalize} has a rank of #{rank}."
+	" #{weekday.upcase}: #{title.capitalize} has a rank of #{normalizedRank}."
 end
 
 x = Movie.new('Training Day',5)
@@ -35,4 +42,7 @@ x.ThumbsDown
 
 x.ThumbsDown
 
-puts x
+puts x.title
+x.title = 'Training Day 2.0'
+puts x.title
+x.movie_listing

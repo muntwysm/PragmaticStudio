@@ -1,22 +1,38 @@
 class Player
-	def initialize playerName , playerhealth =100
-		@playerName = playerName
-		@playerhealth = playerhealth
+	attr_reader :health
+	attr_accessor :name
+
+
+	def initialize name , health =100
+		@name = name
+		@health = health
 	end
 
 	def to_s
-		"I'm #{@playerName.capitalize} with a health of #{@playerhealth}."
+		"I'm #{@name.capitalize} with a health of #{@health} and score of #{score}."
 	end
 
 	def blammed
-		@playerhealth -= 10
-		puts "#{@playerName} got blammed"
+		@health -= 10
+		@score = @health + @name.length
+		puts "#{@name} got blammed"
 	end
 
 	def w00ted
-		@playerhealth += 10
-		puts "#{@playerName} got w00ted"
+		@health += 10
+		@score = @health + @name.length
+		puts "#{@Name} got w00ted"
 	end
+
+	def score
+		@name.length + @health
+	end
+
+	#def score=new_score
+	#	@score = new_score
+	#end
+
+
 end
 
 def time 
@@ -36,5 +52,5 @@ puts playerLarry
 
 playerLarry.w00ted
 
-puts playerLarry
+puts playerLarry.score
 

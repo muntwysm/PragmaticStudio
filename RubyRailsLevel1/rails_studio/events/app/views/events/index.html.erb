@@ -1,13 +1,13 @@
-
-
 <h1><%= pluralize(@events.length,'Event') %> </h1>
 
 
 <% @events.each do |event| %>
-	<article>
+	<article class='event'>
 		<header>
+			<%= image_for(event) %>
 			<h2> <%= link_to(event.name, event_path(event.id) ) %> </h2>
 			<p>  <%= truncate(event.description, length: 20, separator: " ") %> </p>
+			<h3> <%= pluralize(event.capacity,'spot') %></h3>
 		</header>
 		<table>
 			<tr> 

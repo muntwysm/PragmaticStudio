@@ -1,9 +1,11 @@
-<%= link_to "All Events", events_path %>
 
-<article>
+
+<article class='event'>
 		<header>
+			<%= image_for(@event) %>
 			<h2> <%= @event.name %> </h2>
 			<p> <%= @event.description %> </p>
+
 		</header>
 		<table>
 			<tr> 
@@ -18,5 +20,13 @@
 				<th>Price:</th>
 				<td><%= format_price(@event) %></td>
 			</tr>
+			<tr> 
+				<th>Spots:</th>
+				<td><%= @event.capacity %></td>
+			</tr>
 		</table>
 </article>
+
+<%= link_to "All Events", events_path %>|
+
+<%= link_to "Edit",edit_event_path(@event) %> |<%= link_to "Delete",event_path(@event),method: :delete, data: {confirm: 'Are you sure?'} %>

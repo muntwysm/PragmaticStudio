@@ -1,51 +1,51 @@
 class EventsController < ApplicationController
+  
+  def index
+    @events = Event.upcoming    
+  end
 
-	def index
-		@events = Event.upcoming
-	end
+  def show
+    @event = Event.find(params[:id])
+  end
+  
+  def edit
+    @event = Event.find(params[:id])
+  end
+  
+  def update
+    @event = Event.find(params[:id])
+   
+       if @event.update(event_params)
 
-	def show
-		id = params[:id]
-		@event = Event.find(id)
-	end
+        redirect_to @event ,notice:"event successfully updated!"
+      else
+        render :edit
+      end
+  end
+  
+  def new
+    @event = Event.new
+  end
+  
+  def create
+    @event = Event.new(event_params)
 
-	def edit
-		id = params[:id]
-		@event = Event.find(id)
-	end
+    if @event.save
+      redirect_to @event
+    else
+      render :new
+    end
+  end
 
-	def update
-		@event = Event.find(params[:id])
-	
-		@event.update(event_params)
-		redirect_to @event
-	end
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_url
+  end
+    
+private
 
-	def new
-
-		@event = Event.new
-
-	end
-
-	def create
-		@event = Event.new(event_params)
-		@event.save
-		redirect_to @event
-	end
-
-	def destroy
-		@movie = Event.find(params[:id])
-		@movie.delete
-		redirect_to movies_path
-	end
-
-	private
-
-	def event_params
-		event_params = params.require(:event).
-				permit(:name,:description,:location,:price,:starts_at,:image_file_name,:capacity)
-	end
-
-
-
+  def event_params
+    params.require(:event).permit(:name, :description, :location, :price, :starts_at, :image_file_name, :capacity)
+  end
 end

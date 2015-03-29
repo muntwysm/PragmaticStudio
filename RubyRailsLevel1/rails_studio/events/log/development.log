@@ -1,0 +1,1690 @@
+  [1m[36m (22.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (12.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateEvents (20121121153536)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "location" varchar(255), "price" decimal, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20121121153536"]]
+  [1m[35m (12.0ms)[0m  commit transaction
+Migrating to AddFieldsToEvents (20121121175436)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  ALTER TABLE "events" ADD "starts_at" datetime
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "events" ADD "description" text[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20121121175436"]]
+  [1m[36m (14.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddImageFileAndCapacityToEvents (20121210230623)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "events" ADD "image_file_name" varchar(255)[0m
+  [1m[35m (0.0ms)[0m  ALTER TABLE "events" ADD "capacity" integer DEFAULT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20121210230623"]]
+  [1m[35m (14.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "events" ("capacity", "created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["capacity", 75], ["created_at", "2015-03-28 07:46:28.581738"], ["description", "Join us for a fun evening of bug smashing! It's a great way to get involved in open source projects whether you're reporting bugs, fixing bugs, or even inadvertently creating a few bugs!"], ["image_file_name", "bugsmash.png"], ["location", "Wynkoop in LoDo, Denver, CO"], ["name", "BugSmash"], ["price", 0.0], ["starts_at", "2015-07-06 07:46:28.568738"], ["updated_at", "2015-03-28 07:46:28.581738"]]
+  [1m[35m (13.0ms)[0m  commit transaction
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "events" ("capacity", "created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["capacity", 100], ["created_at", "2015-03-28 07:46:28.600739"], ["description", "Got a killer app idea you've been itching to work on? Hunker down at the Hackathon! This is an intense, focused day of hacking on anything you want. The entry fee goes toward a bounty of cash and prizes for winners in a variety of categories."], ["image_file_name", "hackathon.png"], ["location", "Buffalo Billiards, Austin, TX"], ["name", "Hackathon"], ["price", 15.0], ["starts_at", "2015-07-26 07:46:28.568738"], ["updated_at", "2015-03-28 07:46:28.600739"]]
+  [1m[36m (12.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "events" ("capacity", "created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["capacity", 50], ["created_at", "2015-03-28 07:46:28.614740"], ["description", "Kata Camp is where developers go to practice their craft without the interruptions of a typical project. Forget about having to actually ship something. Tell your manager you're going to Kata Camp for the day! Price includes a buffet lunch and a leather-bound journal to record your kata achievements."], ["image_file_name", "katacamp.png"], ["location", "Double R Ranch, Dallas, TX"], ["name", "Kata Camp"], ["price", 75.0], ["starts_at", "2015-08-25 07:46:28.569737"], ["updated_at", "2015-03-28 07:46:28.614740"]]
+  [1m[35m (14.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "events" ("capacity", "created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["capacity", 15], ["created_at", "2015-03-28 07:46:28.630741"], ["description", "Start your day off right with a good cup of Joe while you sling some code. By the time you hit the office, you'll be all tuned up!"], ["image_file_name", "coffeecode.png"], ["location", "Stumptown Coffee, Portland, OR"], ["name", "Coffee and Code"], ["price", 0.0], ["starts_at", "2015-09-14 07:46:28.569737"], ["updated_at", "2015-03-28 07:46:28.630741"]]
+  [1m[36m (14.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "events" ("capacity", "created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["capacity", 150], ["created_at", "2015-03-28 07:46:28.645742"], ["description", "Brew up the tastiest Mac app and win! Entry fee includes a stylish apron."], ["image_file_name", "cocoacookoff.png"], ["location", "1 Infinite Loop, Cupertino, CA"], ["name", "Cocoa Cook-off"], ["price", 25.0], ["starts_at", "2015-09-24 07:46:28.569737"], ["updated_at", "2015-03-28 07:46:28.645742"]]
+  [1m[35m (12.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "events" ("capacity", "created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["capacity", 200], ["created_at", "2015-03-28 07:46:28.659743"], ["description", "Join us for a non-stop evening of Muppet mania! We'll watch all the hits (and flops), starting with the classics from back in the day and ending with the latest release."], ["image_file_name", "moviemarathon.png"], ["location", "Disney Theatre, Orlando, FL"], ["name", "Muppets Movie Marathon"], ["price", 15.0], ["starts_at", "2015-10-04 07:46:28.569737"], ["updated_at", "2015-03-28 07:46:28.659743"]]
+  [1m[36m (11.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "events" ("capacity", "created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["capacity", 75], ["created_at", "2015-03-28 07:46:28.673640"], ["description", "Come sing along with your favorite country band in Music City! Cover charge includes a confidence-boosting beverage of your choice and entry into the YeeHaw Yodelin' contest."], ["image_file_name", "karaoke.png"], ["location", "Hokey Pokey Saloon, Nashville, TN"], ["name", "Hokey Karaoke"], ["price", 25.0], ["starts_at", "2015-10-14 07:46:28.569737"], ["updated_at", "2015-03-28 07:46:28.673640"]]
+  [1m[35m (13.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "events" ("capacity", "created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["capacity", 30], ["created_at", "2015-03-28 07:46:28.689640"], ["description", "Come meet local Rails developers and enjoy a technical talk by a local celebrity. This week's topic is a comparison of testing frameworks, templating systems, and whether to use tabs or spaces."], ["image_file_name", "placeholder.png"], ["location", "Reston, VA"], ["name", "Rails User Group"], ["price", 0.0], ["starts_at", "2015-03-26 07:46:28.569737"], ["updated_at", "2015-03-28 07:46:28.689640"]]
+  [1m[36m (14.0ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/events" for 127.0.0.1 at 2015-03-28 02:46:42 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.0ms)[0m  SELECT "events".* FROM "events"  WHERE (starts_at >= '2015-03-28 07:46:42.542166')  ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (88.0ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_sidebar.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 1428ms (Views: 1408.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 02:46:43 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 02:46:43 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/cocoacookoff.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/hackathon.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/bugsmash.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/katacamp.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/moviemarathon.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/coffeecode.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/karaoke.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 02:46:44 -0500
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+
+
+Started GET "/events" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (1.0ms)[0m  SELECT "events".* FROM "events"  WHERE (starts_at >= '2015-03-28 08:42:03.591754')  ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (39.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 252ms (Views: 232.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/coffeecode.png" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:42:03 -0500
+
+
+Started GET "/assets/hackathon.png" for 127.0.0.1 at 2015-03-28 03:42:04 -0500
+
+
+Started GET "/assets/bugsmash.png" for 127.0.0.1 at 2015-03-28 03:42:04 -0500
+
+
+Started GET "/assets/katacamp.png" for 127.0.0.1 at 2015-03-28 03:42:04 -0500
+
+
+Started GET "/assets/moviemarathon.png" for 127.0.0.1 at 2015-03-28 03:42:04 -0500
+
+
+Started GET "/assets/cocoacookoff.png" for 127.0.0.1 at 2015-03-28 03:42:04 -0500
+
+
+Started GET "/assets/karaoke.png" for 127.0.0.1 at 2015-03-28 03:42:04 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:42:04 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:42:04 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:42:04 -0500
+
+
+Started GET "/events/new" for 127.0.0.1 at 2015-03-28 03:43:02 -0500
+Processing by EventsController#new as HTML
+  Rendered events/_form.html.erb (63.0ms)
+  Rendered events/new.html.erb within layouts/application (66.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 201ms (Views: 200.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"Coding Showdown", "description"=>"", "location"=>"", "price"=>"", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"43", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Redirected to http://localhost:3000/events
+Completed 302 Found in 11ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT "events".* FROM "events"  WHERE (starts_at >= '2015-03-28 08:43:32.567075')  ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 110ms (Views: 109.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/hackathon.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/cocoacookoff.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/moviemarathon.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/katacamp.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/coffeecode.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/bugsmash.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/karaoke.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:43:32 -0500
+
+
+Started GET "/events/new" for 127.0.0.1 at 2015-03-28 03:44:33 -0500
+Processing by EventsController#new as HTML
+  Rendered events/_form.html.erb (15.0ms)
+  Rendered events/new.html.erb within layouts/application (18.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 140ms (Views: 135.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:44:37 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"X", "description"=>"", "location"=>"", "price"=>"", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"44", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered events/_form.html.erb (10.0ms)
+  Rendered events/new.html.erb within layouts/application (13.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 202ms (Views: 192.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:44:37 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:44:37 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:44:37 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:44:37 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:44:37 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:44:37 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:44:37 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:44:38 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:44:38 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:44:38 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:44:38 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:44:38 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:44:38 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:44:38 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:44:38 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:44:38 -0500
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"Coding Showdown", "description"=>"This is a showcase for the best coding talent that Jamaica has to offer.", "location"=>"New Kingston , Jamaica", "price"=>"", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"44", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered events/_form.html.erb (7.0ms)
+  Rendered events/new.html.erb within layouts/application (8.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 118ms (Views: 113.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:45:38 -0500
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"Coding Showdown", "description"=>"This is a showcase for the best coding talent that Jamaica has to offer.", "location"=>"New Kingston , Jamaica", "price"=>"4000.00", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"44", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "events" ("created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-03-28 08:48:17.258065"], ["description", "This is a showcase for the best coding talent that Jamaica has to offer."], ["image_file_name", ""], ["location", "New Kingston , Jamaica"], ["name", "Coding Showdown"], ["price", 4000.0], ["starts_at", "2015-03-28 08:44:00.000000"], ["updated_at", "2015-03-28 08:48:17.258065"]]
+  [1m[35m (24.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/events/9
+Completed 302 Found in 34ms (ActiveRecord: 25.0ms)
+
+
+Started GET "/events/9" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mEvent Load (1.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 9]]
+  Rendered events/show.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 93ms (Views: 90.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/placeholder.png" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:48:17 -0500
+
+
+Started GET "/events/new" for 127.0.0.1 at 2015-03-28 03:48:23 -0500
+Processing by EventsController#new as HTML
+  Rendered events/_form.html.erb (12.0ms)
+  Rendered events/new.html.erb within layouts/application (16.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 161ms (Views: 159.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"", "description"=>"", "location"=>"", "price"=>"", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered events/_form.html.erb (11.0ms)
+  Rendered events/new.html.erb within layouts/application (13.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 128ms (Views: 121.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:48:44 -0500
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:52:00 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"", "description"=>"", "location"=>"", "price"=>"", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered events/_form.html.erb (1.0ms)
+  Rendered events/new.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 18ms
+
+SyntaxError (C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:2: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+...ppend=( if @event.errors.any? );@output_buffer.safe_append='
+...                               ^
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:11: syntax error, unexpected keyword_end
+...eze;@output_buffer.append=( end );@output_buffer.safe_append...
+...                               ^
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:16: syntax error, unexpected keyword_end
+'.freeze;@output_buffer.append=( end );@output_buffer.safe_append='
+                                    ^
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:56: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end ;@output_buffer.to_s
+             ^
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:57: syntax error, unexpected keyword_ensure, expecting ')'
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:59: syntax error, unexpected keyword_end, expecting ')'):
+  app/views/events/_form.html.erb:2: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+  app/views/events/_form.html.erb:11: syntax error, unexpected keyword_end
+  app/views/events/_form.html.erb:16: syntax error, unexpected keyword_end
+  app/views/events/_form.html.erb:56: syntax error, unexpected keyword_end, expecting ')'
+  app/views/events/_form.html.erb:57: syntax error, unexpected keyword_ensure, expecting ')'
+  app/views/events/_form.html.erb:59: syntax error, unexpected keyword_end, expecting ')'
+  app/views/events/new.html.erb:5:in `_app_views_events_new_html_erb__498732440_47537340'
+  app/controllers/events_controller.rb:31:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (65.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:52:47 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"", "description"=>"", "location"=>"", "price"=>"", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered events/_form.html.erb (1.0ms)
+  Rendered events/new.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 11ms
+
+SyntaxError (C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:2: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+...ppend=( if @event.errors.any? );@output_buffer.safe_append='
+...                               ^
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:9: syntax error, unexpected keyword_end
+...eze;@output_buffer.append=( end );@output_buffer.safe_append...
+...                               ^
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:13: syntax error, unexpected keyword_end
+'.freeze;@output_buffer.append=( end );@output_buffer.safe_append='
+                                    ^
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:53: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end ;@output_buffer.to_s
+             ^
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:54: syntax error, unexpected keyword_ensure, expecting ')'
+C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/views/events/_form.html.erb:56: syntax error, unexpected keyword_end, expecting ')'):
+  app/views/events/_form.html.erb:2: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+  app/views/events/_form.html.erb:9: syntax error, unexpected keyword_end
+  app/views/events/_form.html.erb:13: syntax error, unexpected keyword_end
+  app/views/events/_form.html.erb:53: syntax error, unexpected keyword_end, expecting ')'
+  app/views/events/_form.html.erb:54: syntax error, unexpected keyword_ensure, expecting ')'
+  app/views/events/_form.html.erb:56: syntax error, unexpected keyword_end, expecting ')'
+  app/views/events/new.html.erb:5:in `_app_views_events_new_html_erb__498732440_47537340'
+  app/controllers/events_controller.rb:31:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (27.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:53:43 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"", "description"=>"", "location"=>"", "price"=>"", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered events/_form.html.erb (3.0ms)
+  Rendered events/new.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 14ms
+
+ActionView::Template::Error (undefined method `full_message' for :name:Symbol):
+     5:     <h2>Your event could not be saved.</h2>
+     6:       <ul>
+     7:         <% @event.errors.each do |error| %>
+     8:             <li><%= error.full_message.to_sentence %></li>
+     9:         <% end %>
+    10:       </ul>
+    11:   </header>
+  app/views/events/_form.html.erb:8:in `block (2 levels) in _app_views_events__form_html_erb__486972204_34615572'
+  app/views/events/_form.html.erb:7:in `block in _app_views_events__form_html_erb__486972204_34615572'
+  app/views/events/_form.html.erb:1:in `_app_views_events__form_html_erb__486972204_34615572'
+  app/views/events/new.html.erb:5:in `_app_views_events_new_html_erb__498732440_47537340'
+  app/controllers/events_controller.rb:31:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.0ms)
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"", "description"=>"", "location"=>"", "price"=>"", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered events/_form.html.erb (12.0ms)
+  Rendered events/new.html.erb within layouts/application (14.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 134ms (Views: 100.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:54:21 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:54:22 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:54:22 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:54:22 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:54:22 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:54:22 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:54:22 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:54:22 -0500
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:56:15 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"", "description"=>"", "location"=>"", "price"=>"", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"1", "image_file_name"=>""}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered shared/_errors.html.erb (3.0ms)
+  Rendered events/_form.html.erb (15.0ms)
+  Rendered events/new.html.erb within layouts/application (17.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 160ms (Views: 150.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:56:16 -0500
+
+
+Started POST "/events" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"Rails User Group", "description"=>"This is going to be great.", "location"=>"Reston, VA", "price"=>"0.00", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"10", "image_file_name"=>"rails.png"}, "commit"=>"Create Event"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "events" ("capacity", "created_at", "description", "image_file_name", "location", "name", "price", "starts_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["capacity", 10], ["created_at", "2015-03-28 08:57:08.726345"], ["description", "This is going to be great."], ["image_file_name", "rails.png"], ["location", "Reston, VA"], ["name", "Rails User Group"], ["price", 0.0], ["starts_at", "2015-03-28 08:48:00.000000"], ["updated_at", "2015-03-28 08:57:08.726345"]]
+  [1m[35m (13.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/events/10
+Completed 302 Found in 23ms (ActiveRecord: 14.0ms)
+
+
+Started GET "/events/10" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 10]]
+  Rendered events/show.html.erb within layouts/application (8.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 141ms (Views: 139.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:08 -0500
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2015-03-28 03:57:09 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:57:09 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:57:09 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:57:09 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:57:09 -0500
+
+
+Started GET "/events" for 127.0.0.1 at 2015-03-28 03:57:15 -0500
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.0ms)[0m  SELECT "events".* FROM "events"  WHERE (starts_at >= '2015-03-28 08:57:15.950135')  ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (13.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 140ms (Views: 139.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/katacamp.png" for 127.0.0.1 at 2015-03-28 03:57:16 -0500
+
+
+Started GET "/assets/hackathon.png" for 127.0.0.1 at 2015-03-28 03:57:16 -0500
+
+
+Started GET "/assets/coffeecode.png" for 127.0.0.1 at 2015-03-28 03:57:16 -0500
+
+
+Started GET "/assets/bugsmash.png" for 127.0.0.1 at 2015-03-28 03:57:16 -0500
+
+
+Started GET "/assets/moviemarathon.png" for 127.0.0.1 at 2015-03-28 03:57:16 -0500
+
+
+Started GET "/assets/cocoacookoff.png" for 127.0.0.1 at 2015-03-28 03:57:16 -0500
+
+
+Started GET "/assets/karaoke.png" for 127.0.0.1 at 2015-03-28 03:57:16 -0500
+
+
+Started GET "/events" for 127.0.0.1 at 2015-03-28 03:57:20 -0500
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (1.0ms)[0m  [1mSELECT "events".* FROM "events"  WHERE (starts_at >= '2015-03-28 08:57:20.667341')  ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 133ms (Views: 131.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2015-03-28 03:57:22 -0500
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.0ms)[0m  SELECT "events".* FROM "events"  WHERE (starts_at >= '2015-03-28 08:57:22.116181')  ORDER BY "events"."starts_at" ASC
+  Rendered events/index.html.erb within layouts/application (15.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 167ms (Views: 165.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2015-03-28 03:57:30 -0500
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (1.0ms)[0m  [1mSELECT "events".* FROM "events"  WHERE (starts_at >= '2015-03-28 08:57:30.772276')  ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (10.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 135ms (Views: 133.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/events/11" for 127.0.0.1 at 2015-03-28 03:57:53 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mEvent Load (0.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 11]]
+Completed 404 Not Found in 2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Event with 'id'=11):
+  app/controllers/events_controller.rb:8:in `show'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (33.0ms)
+
+
+Started GET "/events/10" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 10]]
+  Rendered events/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 105ms (Views: 104.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:57:58 -0500
+
+
+Started GET "/events/10/edit" for 127.0.0.1 at 2015-03-28 03:58:12 -0500
+Processing by EventsController#edit as HTML
+  Parameters: {"id"=>"10"}
+  [1m[35mEvent Load (1.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 10]]
+  Rendered shared/_errors.html.erb (1.0ms)
+  Rendered events/_form.html.erb (8.0ms)
+  Rendered events/edit.html.erb within layouts/application (10.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 100ms (Views: 99.0ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/events/10" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+Processing by EventsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"", "description"=>"This is going to be great.", "location"=>"Reston, VA", "price"=>"0", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"10", "image_file_name"=>"rails.png"}, "commit"=>"Update Event", "id"=>"10"}
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 10]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Redirected to http://localhost:3000/events/10
+Completed 302 Found in 6ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/events/10" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[35mEvent Load (0.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 10]]
+  Rendered events/show.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 96ms (Views: 94.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 03:58:17 -0500
+
+
+Started GET "/events/10/edit" for 127.0.0.1 at 2015-03-28 03:59:29 -0500
+Processing by EventsController#edit as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 10]]
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered events/_form.html.erb (8.0ms)
+  Rendered events/edit.html.erb within layouts/application (10.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 118ms (Views: 104.0ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/events/10" for 127.0.0.1 at 2015-03-28 03:59:34 -0500
+Processing by EventsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"", "description"=>"This is going to be great.", "location"=>"Reston, VA", "price"=>"0", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"10", "image_file_name"=>"rails.png"}, "commit"=>"Update Event", "id"=>"10"}
+  [1m[35mEvent Load (0.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 10]]
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  Rendered shared/_errors.html.erb (1.0ms)
+  Rendered events/_form.html.erb (11.0ms)
+  Rendered events/edit.html.erb within layouts/application (15.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Redirected to 
+Completed 500 Internal Server Error in 177ms
+
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  app/controllers/events_controller.rb:26:in `update'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (39.0ms)
+
+
+Started PATCH "/events/10" for 127.0.0.1 at 2015-03-28 04:00:03 -0500
+Processing by EventsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"", "description"=>"This is going to be great.", "location"=>"Reston, VA", "price"=>"0", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"10", "image_file_name"=>"rails.png"}, "commit"=>"Update Event", "id"=>"10"}
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 10]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered events/_form.html.erb (10.0ms)
+  Rendered events/edit.html.erb within layouts/application (13.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 154ms (Views: 134.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 04:00:04 -0500
+
+
+Started PATCH "/events/10" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+Processing by EventsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"Rails User Group", "description"=>"This is going to be great.", "location"=>"Reston, VA", "price"=>"0", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"3", "starts_at(3i)"=>"28", "starts_at(4i)"=>"08", "starts_at(5i)"=>"48", "capacity"=>"10", "image_file_name"=>"rails.png"}, "commit"=>"Update Event", "id"=>"10"}
+  [1m[35mEvent Load (1.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 10]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/events/10
+Completed 302 Found in 7ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/events/10" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 10]]
+  Rendered events/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 121ms (Views: 119.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 04:00:09 -0500
+
+
+Started PATCH "/movies/1" for 127.0.0.1 at 2015-03-28 04:13:45 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (No route matches [PATCH] "/movies/1"):
+  actionpack (4.1.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.9) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.9) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.9) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.9) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.9) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.9) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.9) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.9) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.9) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.9) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.9) lib/rails/engine.rb:514:in `call'
+  railties (4.1.9) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby2.0.0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.0.0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.0.0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/routes/_table.html.erb (10.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (49.0ms)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (1.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 217ms (Views: 182.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 04:13:50 -0500
+
+
+Started GET "/events/1/edit" for 127.0.0.1 at 2015-03-28 04:13:53 -0500
+Processing by EventsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered shared/_errors.html.erb (5.0ms)
+  Rendered events/_form.html.erb (65.0ms)
+  Rendered events/edit.html.erb within layouts/application (68.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 174ms (Views: 171.0ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/events/1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+Processing by EventsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"Bug Smash", "description"=>"Join us for a fun evening of bug smashing! It's a great way to get involved in open source projects whether you're reporting bugs, fixing bugs, or even inadvertently creating a few bugs!", "location"=>"Wynkoop in LoDo, Denver, CO", "price"=>"0", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"7", "starts_at(3i)"=>"6", "starts_at(4i)"=>"07", "starts_at(5i)"=>"46", "capacity"=>"75", "image_file_name"=>"bugsmash.png"}, "commit"=>"Update Event", "id"=>"1"}
+  [1m[35mEvent Load (1.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "events" SET "name" = ?, "starts_at" = ?, "updated_at" = ? WHERE "events"."id" = 1  [["name", "Bug Smash"], ["starts_at", "2015-07-06 07:46:00.000000"], ["updated_at", "2015-03-28 09:13:57.269887"]]
+  [1m[36m (14.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/events/1
+Completed 302 Found in 35ms (ActiveRecord: 16.0ms)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (1.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 93ms (Views: 92.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 04:13:57 -0500
+
+
+Started GET "/events/1/edit" for 127.0.0.1 at 2015-03-28 04:15:09 -0500
+Processing by EventsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered events/_form.html.erb (11.0ms)
+  Rendered events/edit.html.erb within layouts/application (13.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 144ms (Views: 129.0ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/events/1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+Processing by EventsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"BugSmash", "description"=>"Join us for a fun evening of bug smashing! It's a great way to get involved in open source projects whether you're reporting bugs, fixing bugs, or even inadvertently creating a few bugs!", "location"=>"Wynkoop in LoDo, Denver, CO", "price"=>"0", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"7", "starts_at(3i)"=>"6", "starts_at(4i)"=>"07", "starts_at(5i)"=>"46", "capacity"=>"75", "image_file_name"=>"bugsmash.png"}, "commit"=>"Update Event", "id"=>"1"}
+  [1m[35mEvent Load (0.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  UPDATE "events" SET "name" = ?, "updated_at" = ? WHERE "events"."id" = 1  [["name", "BugSmash"], ["updated_at", "2015-03-28 09:15:15.614908"]]
+  [1m[36m (12.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/events/1
+Completed 302 Found in 19ms (ActiveRecord: 12.0ms)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 87ms (Views: 86.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 04:15:15 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-28 04:15:17 -0500
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT "events".* FROM "events"  WHERE (starts_at >= '2015-03-28 09:15:17.830068')  ORDER BY "events"."starts_at" ASC[0m
+  Rendered events/index.html.erb within layouts/application (66.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 156ms (Views: 156.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2015-03-28 04:15:18 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 105ms (Views: 103.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/1/edit" for 127.0.0.1 at 2015-03-28 04:16:49 -0500
+Processing by EventsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (1.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered events/_form.html.erb (38.0ms)
+  Rendered events/edit.html.erb within layouts/application (40.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 168ms (Views: 165.0ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/events/1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+Processing by EventsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SH6/tPgjU5/lqP9EzObcsxLJLbmJxHjn/krU6URiBkU=", "event"=>{"name"=>"Bug Smash", "description"=>"Join us for a fun evening of bug smashing! It's a great way to get involved in open source projects whether you're reporting bugs, fixing bugs, or even inadvertently creating a few bugs!", "location"=>"Wynkoop in LoDo, Denver, CO", "price"=>"0", "starts_at(1i)"=>"2015", "starts_at(2i)"=>"7", "starts_at(3i)"=>"6", "starts_at(4i)"=>"07", "starts_at(5i)"=>"46", "capacity"=>"75", "image_file_name"=>"bugsmash.png"}, "commit"=>"Update Event", "id"=>"1"}
+  [1m[35mEvent Load (1.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  UPDATE "events" SET "name" = ?, "updated_at" = ? WHERE "events"."id" = 1  [["name", "Bug Smash"], ["updated_at", "2015-03-28 09:16:53.019171"]]
+  [1m[36m (13.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/events/1
+Completed 302 Found in 24ms (ActiveRecord: 16.0ms)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.0ms)[0m  SELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 88ms (Views: 85.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 04:16:53 -0500
+
+
+Started GET "/events/1" for 127.0.0.1 at 2015-03-28 04:18:53 -0500
+
+SyntaxError (C:/CWaltonProjects/PragmaticStudioProjects/PragmaticStudio/RubyRailsLevel1/rails_studio/events/app/controllers/events_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting keyword_end
+        redirect_to @event notice:"event successfully updated!"
+                                 ^):
+  app/controllers/events_controller.rb:20: syntax error, unexpected tIDENTIFIER, expecting keyword_end
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (37.0ms)
+
+
+Started GET "/events/1" for 127.0.0.1 at 2015-03-28 04:19:07 -0500
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.0ms)[0m  [1mSELECT  "events".* FROM "events"  WHERE "events"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered events/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_header.html.erb (0.0ms)
+  Rendered layouts/_sidebar.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 161ms (Views: 144.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/layout.css?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/elements.css?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/buttons.css?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/forms.css?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/bugsmash.png" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/arrow.png" for 127.0.0.1 at 2015-03-28 04:19:08 -0500
+
+
+Started GET "/assets/add.png" for 127.0.0.1 at 2015-03-28 04:19:08 -0500

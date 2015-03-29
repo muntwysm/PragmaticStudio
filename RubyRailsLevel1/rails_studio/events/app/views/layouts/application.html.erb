@@ -2,21 +2,29 @@
 <html>
 <head>
   <title>Events</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= render "layouts/header" %>
+<%= render 'layouts/header' %>
 
-<%= render "layouts/navigation" %>
+<div id="wrapper">
 
-<%= yield %>
+<% if flash[:notice] %>
+<p class='flash notice'><%= flash[:notice] %></p>
+<% end %>
+  <div id="container">
+    <%= render "layouts/sidebar" %>
+    <section id="content">
+      <%= yield %>
+    </section>
+  </div>
 
+</div>
 
-<%= render "layouts/footer" %>
-
+<%= render 'layouts/footer' %>
 
 </body>
 </html>

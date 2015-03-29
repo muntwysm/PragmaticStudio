@@ -2,20 +2,27 @@
 <html>
 <head>
   <title>Flix</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 
-<%= render "layouts/header" %>
 
+<%= render "layouts/flashes" %>
+<div id="wrapper">
 
-<%= render "layouts/sidebar" %>
+  <div id="container">
+    <section id="sidebar">
+      <%= render "layouts/sidebar" %>
+    </section>
+    <section id="content">
+      <%= yield %>
+    </section>
+  </div>
 
-<%= yield %>
-
+</div>
 
 <%= render "layouts/footer" %>
 

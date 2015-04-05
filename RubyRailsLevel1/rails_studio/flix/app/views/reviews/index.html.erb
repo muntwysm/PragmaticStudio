@@ -1,0 +1,10 @@
+<header id="content-header">
+  <h1>Reviews for <%= link_to(@movie.title, @movie) %></h1>
+</header>
+<ol>
+<% if @reviews.any? %>
+	<% @reviews.each do |review| %>
+		<li> Number of stars: <%= review.stars %> by <%= review.name %>: <%= review.comment %> </li>
+	<% end %>
+<% end %>
+</ol>

@@ -1,48 +1,12 @@
-def weekday
-	current_time = Time.new
-	current_time.strftime("%A")
-end
+require_relative 'playlist'
 
-class Movie
-	#attr_accessor: title,rank
-	def initialize(title,rank)
-		@rank = rank
-		@title = title
-	end
+movie1 = Movie.new('Training Day',5)
+movie2 = Movie.new('No Country For Old Men',5)
+movie3 = Movie.new('Nightcrawler',5)
 
-	def normalizedRank
-		@rank/10
-	end
 
-	def to_s
- 		"#{@title} has rank #{@rank}"
-	end
-
-	def ThumbsUp
-		@rank += 1
-	end
-
-	def ThumbsDown
-		@rank -= 1
-	end
-
-	attr_reader :rank
-	attr_accessor :title
-end
-
-def movie_listing (title, rank = 0)
-	" #{weekday.upcase}: #{title.capitalize} has a rank of #{normalizedRank}."
-end
-
-x = Movie.new('Training Day',5)
-
-x.ThumbsUp
-
-x.ThumbsDown
-
-x.ThumbsDown
-
-puts x.title
-x.title = 'Training Day 2.0'
-puts x.title
-x.movie_listing
+playlist1 = Playlist.new("Kermit")
+playlist1.add_movie(movie1)
+playlist1.add_movie(movie2)
+playlist1.add_movie(movie3)
+playlist1.play(3)

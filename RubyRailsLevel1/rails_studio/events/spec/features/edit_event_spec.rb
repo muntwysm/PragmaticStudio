@@ -20,6 +20,19 @@ describe "Editing an event" do
     expect(current_path).to eq(event_path(event))
 
     expect(page).to have_text("Updated Event Name")
+    expect(page).to have_text('Event successfully updated!')
+  end
+  
+  it "does not update the event if it's invalid" do
+    event = Event.create(event_attributes)
+    
+    visit edit_event_url(event)
+    
+    fill_in 'Name', with: " "
+    
+    click_button 'Update Event' 
+        
+    expect(page).to have_text('error')
   end
   
 end

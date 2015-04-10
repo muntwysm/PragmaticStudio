@@ -1,10 +1,18 @@
 <header id="content-header">
-  <h1>Reviews for <%= link_to(@movie.title, @movie) %></h1>
+  <h1>Reviews for <%= link_to(@movie.title, @movie) %></h2>
 </header>
-<ol>
-<% if @reviews.any? %>
-	<% @reviews.each do |review| %>
-		<li> Number of stars: <%= review.stars %> by <%= review.name %>: <%= review.comment %> </li>
-	<% end %>
-<% end %>
+
+<ol id="reviews">
+  <% @reviews.each do |review| %>
+    <li>
+      <span class="review"><%= pluralize(review.stars, 'star') %></span>
+      <span class="user">by <%= review.name %></span>
+      <span class="date"><%= time_ago_in_words(review.created_at) %> ago</span>
+      <p>
+        &quot;<%= review.comment %>&quot;
+      </p>
+   <p><%= link_to 'Edit Review',edit_movie_review_path(@movie,review) %></p>
+    </li>
+
+  <% end %>
 </ol>

@@ -9,3 +9,12 @@ def event_attributes(overrides = {})
     capacity: 75
   }.merge(overrides)
 end
+
+def registration_attributes(overrides = {})
+  {
+    name: "Joe Developer", 
+    email: "joe@gmail.com",
+    how_heard: "Twitter"     
+  }.merge(overrides)
+end
+

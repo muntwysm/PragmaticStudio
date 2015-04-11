@@ -1,10 +1,17 @@
 require_relative 'player'
+require_relative 'clumsyplayer'
+require_relative 'berserk_player'
 require_relative 'die'
 require_relative 'game_turn'
 require_relative 'treasuretrove'
 
 class Game
-  attr_reader :name
+  attr_reader :name, :players
+
+  def initialize(name)
+    @name = name
+    @players = []
+  end
 
   def total_points
     sum = 0
@@ -19,10 +26,28 @@ class Game
     puts 'TEST'
   end
 
-  def initialize(name)
-    @name = name
-    @players = []
+  def load_players file_name
+    File.readlines(file_name).each do |line|
+      add_player(Player.from_csv(line))
+    end
   end
+
+  def save_high_scores(to_file)
+    File.open(to_file,'w') do |file|
+      file.puts("#{name} High Scores:\n")
+
+      @players.sort.each do |player|
+        file.puts high_score_entry(player)
+      end
+    end
+  end
+
+  def high_score_entry(player)
+    formatted_name = player.name.ljust(20, '.')
+    "#{formatted_name} #{player.score}"
+  end
+
+
 
   def add_player(player)
     @players.push(player)
@@ -44,18 +69,27 @@ class Game
       puts player
     end
 
+
     1.upto rounds do |round|
 
+      if block_given?
+        if yield
+          puts "The game has ended as maximum number of points has reached #{total_points}\n"
+          break
+        end
+      end
       puts "Round #{round}:"
       @players.each do |player|
         GameTurn.take_turn(player)
-        #puts player
+        puts player
       end
     end
 
     print_stats
 
     high_score
+
+    save_high_scores('high_scores')
 
   end
 
@@ -69,7 +103,7 @@ class Game
     puts "\n#{name} High Score"
 
     sorted_players.each do |player|
-      puts "#{player.name}..............#{player.score}\n"
+      puts high_score_entry(player)
     end
 
   end
@@ -78,24 +112,14 @@ class Game
   def print_stats
 
     @players.each do |player|
+      print player
+      player.each_treasure do |treasure|
+        puts "#{treasure.name} total points #{treasure.points}"
+      end
       puts "\n #{player.name} Point Totals: \n #{player.points} grand total points."
     end
 
-    puts "\n Total number of treasure points is : #{total_points}"
-
-
-    #strong_players, wimpy_players = @players.partition{|player| player.strong? }
-
-    #puts "\nStrong Players are :"
-    #strong_players.each do |player|
-    #  print_name_and_health(player)
-    #end
-
-    #puts "\nWimpy Players are :"
-    #puts wimpy_players.each do |player|
-    #  print_name_and_health(player)
-    #end
-
+    puts "\n Total number of treasure points for entire game is : #{total_points}"
   end
 end
 

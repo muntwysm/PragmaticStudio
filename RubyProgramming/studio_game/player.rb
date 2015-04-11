@@ -1,6 +1,11 @@
+require_relative 'playable'
+
+
+
 class Player
-  attr_reader :health, :score
-  attr_accessor :name
+  include Playable
+  attr_reader :score
+  attr_accessor :name, :health
 
 
   def initialize name , health =100
@@ -14,13 +19,18 @@ class Player
   end
 
 
+  def each_treasure
+    @found_treasures.each do |name,points|
+      treasure = Treasure.new(name,points)
+      yield(treasure)
+    end
+  end
+
   def points
     @found_treasures.values.reduce(0,:+)
   end
 
-  def strong?
-    health >= 100
-  end
+
 
   def <=>(other_player)
     other_player.score <=> score
@@ -33,17 +43,13 @@ class Player
     puts "#{name}'s treasures: #{@found_treasures}"
   end
 
-  def blammed
-    @health -= 10
-    @score = @health + points
-    puts "#{@name} got blammed"
+  def self.from_csv csv_line
+    name,health = csv_line.split(',')
+    Player.new(name,Integer(health))
   end
 
-  def w00ted
-    @health += 15
-    @score = @health + points
-    puts "#{@name} got w00ted"
-  end
+
+
 
   def score
     @health + points

@@ -19,3 +19,23 @@ flyers = []
 end
 
 puts flyers
+
+flyers.each { |flyer| puts "#{flyer.name} - #{flyer.miles_flown} miles" }
+
+
+sum = 0
+flyers.each {|flyer| sum += flyer.miles_flown}
+puts "Total miles flown: #{sum}"
+
+
+promotions ={United: 1.5,Delta: 2.0, Lufthansa: 2.5}
+
+promotions.each {|airline,bonus| puts "Earn #{bonus}x miles by flying #{airline}"}
+
+desserts = {:Chocolate => 1.00,:vanilla => 0.75, :cinnamon => 1.25}
+
+desserts.each {|dessert,price| puts "$#{price * 2} for a cup of #{dessert}."}
+
+flyers.each do |flyer|
+  promotions.each {|airline,value|puts "#{flyer.name} could earn #{flyer.miles_flown * value} by flying #{airline}!"}
+end

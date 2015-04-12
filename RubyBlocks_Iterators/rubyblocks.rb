@@ -1,5 +1,7 @@
 
+require 'mathn'
 
+Prime.each { |number| puts number }
 
 
 

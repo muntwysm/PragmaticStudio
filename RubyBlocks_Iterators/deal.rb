@@ -31,6 +31,3 @@ progress { |percent| puts percent }
 
 def greet
   yield
-end
-
-greet { |name, age| puts "Hello, #{name}. You don't look #{age}!" }

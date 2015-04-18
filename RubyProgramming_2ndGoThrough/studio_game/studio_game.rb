@@ -1,9 +1,14 @@
-larry_name = "larry"
-larry_health = 60
+def current_time
+  time = Time.now
+  time.strftime("%I:%M:%S")
+end
 
-moe_name = "moe"
-curly_name = "curly"
 
-puts "#{larry_name}'s health is #{larry_health / 9.0}"
+def say_hello(player_name,player_health = 100)
+  puts "I'm #{player_name.capitalize} with a health of #{player_health} as of #{current_time}."
+end
 
-puts "Players:\n\t#{larry_name}\n\t#{curly_name}\n\t#{moe_name}"
+puts say_hello("larry", 60)
+puts say_hello("curly", 125)
+puts say_hello("moe")
+puts say_hello("shemp", 90)

@@ -15,7 +15,7 @@ describe ProjectCatalogue do
 
     Die.any_instance.stub(:roll).and_return(1)
 
-    @project_catalogue.request_funding
+    @project_catalogue.request_funding(2)
 
     @project.funding.should == -10
 
@@ -26,7 +26,7 @@ describe ProjectCatalogue do
 
     Die.any_instance.stub(:roll).and_return(5)
 
-    @project_catalogue.request_funding
+    @project_catalogue.request_funding(2)
 
     @project.funding.should == 25
   end

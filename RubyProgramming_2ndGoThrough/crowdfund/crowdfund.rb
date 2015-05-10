@@ -15,4 +15,4 @@ project_Catalogue_Chris.add_project(project_chris_house)
 project_Catalogue_Chris.add_project(project_PC_Upgrades)
 project_Catalogue_Chris.add_project(project_Office_Additions)
 
-project_Catalogue_Chris.request_funding
+project_Catalogue_Chris.request_funding(3)

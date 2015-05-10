@@ -1,6 +1,6 @@
 class Project
 
-  attr_reader :funding,:target_funding
+  attr_reader :funding,:target_funding,:pledges_received
   attr_accessor :name
 
 
@@ -8,14 +8,35 @@ class Project
     @name = name.upcase
     @funding = funding
     @target_funding = target_funding
+    @pledges_received = Hash.new(0)
+  end
+
+  def shortfall_funding
+    target_funding - total_funding
+  end
+
+  def total_funding
+    @funding + @pledges_received.values.reduce(0,:+)
+  end
+
+
+
+  def <=>(other_project)
+    other_project.shortfall_funding <=> shortfall_funding
   end
 
   def total_funding_still_needed
-    target_funding - funding
+    target_funding - total_funding
   end
 
   def to_s
-    "Project #{@name} has a funding of $#{@funding} and a target of $#{target_funding}."
+    "Project #{@name} has a funding of $#{total_funding} and a target of $#{target_funding}."
+  end
+
+  def receive_pledge (pledge)
+    @pledges_received[pledge.name] += pledge.amount
+    puts "#{name} has gotten a #{pledge.name} pledge worth $#{pledge.amount}."
+    puts "#{name}'s pledges: #{@pledges_received}"
   end
 
   def add_funds(funds_added = 25)
@@ -30,6 +51,6 @@ class Project
   end
 
   def fully_funded?
-    funding == target_funding
+    total_funding == target_funding
   end
 end

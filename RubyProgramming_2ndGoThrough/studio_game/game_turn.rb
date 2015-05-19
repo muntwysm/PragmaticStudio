@@ -7,7 +7,7 @@ module GameTurn
 
   def self.take_turn(player)
     die = Die.new
-
+    #die = LoadedDie.new
     rolled_number = die.roll
 
     case rolled_number

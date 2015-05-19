@@ -19,6 +19,11 @@ class Project
     @funding + @pledges_received.values.reduce(0,:+)
   end
 
+  def each_recieved_pledge
+    @pledges_received.each do |name,amount|
+      yield(Pledge.new(name,amount))
+    end
+  end
 
 
   def <=>(other_project)
@@ -40,9 +45,13 @@ class Project
   end
 
   def add_funds(funds_added = 25)
-    @funding += funds_added
-    puts "Project #{@name} has added some funds!"
-    ###{funds_added }in funding towards a goal of $#{@funding}"
+    if fully_funded?
+      puts "#{name} is fully funded so cannot accept more funds!"
+    else
+      @funding += funds_added
+      puts "Project #{@name} has added some funds!"
+      ###{funds_added }in funding towards a goal of $#{@funding}"
+    end
   end
 
   def remove_funds(funds_removed = 10)
@@ -51,6 +60,6 @@ class Project
   end
 
   def fully_funded?
-    total_funding == target_funding
+    total_funding >= target_funding
   end
 end

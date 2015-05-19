@@ -30,7 +30,6 @@ class ProjectCatalogue
       puts "A #{pledge.name} pledge is worth $#{pledge.amount}."
     end
 
-
     1.upto(rounds_of_funding)do |round|
       puts "\nRound of Funding - #{round} :"
       @projects.each do |project|
@@ -38,10 +37,23 @@ class ProjectCatalogue
         puts project
       end
     end
-
-    print_stats
   end
 
+  def save_projects(projects)
+    File.open('projects_needing_funding.txt','w') do |file|
+      projects.each do |project|
+        file.puts("#{project.name.ljust(20)} #{project.total_funding_still_needed}")
+      end
+    end
+  end
+
+
+  def load_projects(file_name)
+    File.readlines('projects.csv').each do |line|
+      name,funding,target_funding = line.split(',')
+      add_project(Project.new(name,funding.to_i,target_funding.to_i))
+    end
+  end
 
   def print_stats
     puts "#{catalogue_name} Statistics:\n"
@@ -66,9 +78,19 @@ class ProjectCatalogue
       puts "#{project.name.ljust(20,'.')} #{project.shortfall_funding}"
     end
 
+    puts %Q|Pledges received for each project:\n|
+    @projects.each do |project|
+      puts "#{project.name} pledge totals:\n"
+      project.each_recieved_pledge do |pledge|
+        puts "$#{pledge.amount} total for #{pledge.name}"
+      end
+    end
+
+    save_projects(under_funded_projects.sort)
+
   end
+
   def print_project_and_funding(project)
     puts "#{project.name} (#{project.total_funding})"
   end
-
 end

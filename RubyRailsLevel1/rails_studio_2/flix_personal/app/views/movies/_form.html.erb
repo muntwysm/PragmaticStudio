@@ -1,0 +1,47 @@
+<%= form_for(@movie) do |movie| %>
+
+<p>
+	<%= movie.label :title %> <br>
+	<%= movie.text_field :title, autofocus: true%>
+</p>
+
+<p>
+	<%= movie.label :description %> <br>
+	<%= movie.text_area :description, {colspan: 20, rows: 5 } %>
+</p>
+
+<p>
+	<%= movie.label :released_on %> <br>
+	<%= movie.date_select :released_on  %>
+</p>
+
+<p> 
+	<%= movie.label :total_gross %> <br>
+	<%= movie.number_field :total_gross %>
+</p>
+
+<p>	
+	<%= movie.label :rating %><br>
+	<%= movie.text_field :rating %>
+</p>
+
+<p>
+	<%= movie.label :director %> <br>
+	<%= movie.text_field :director %>
+</p>
+
+<p>
+	<%= movie.label :duration %><br>
+	<%= movie.text_field :duration %>
+</p>
+
+<p>
+	<%= movie.label :image_file_name %><br>
+	<%=	movie.text_area :image_file_name %>
+</p>
+
+<p>
+	<%= movie.submit %>
+</p>
+
+<% end %>
